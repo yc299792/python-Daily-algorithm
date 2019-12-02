@@ -39,3 +39,22 @@ if __name__ == '__main__':
     str2 = "abh"
     print(string_contain(str1,str2))
 
+#这种方法是用一个整数取模拟哈希表更为巧妙
+def string_contain(str_a,str_b):
+
+    hash_table = 0
+    for c in str_a:
+        hash_table |= 1 << (ord(c)-ord('A'))
+
+    for c in str_b:
+        a = hash_table & 1 << (ord(c) - ord('A'))
+        if  a == 0:
+            return False
+    return True
+
+if __name__ == '__main__':
+
+    str1 = "abcdefg"
+    str2 = "abfgh"
+    print(string_contain(str1,str2))
+
